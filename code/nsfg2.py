@@ -55,7 +55,7 @@ def CleanFemPreg(df):
     # birthwgt_lb contains at least one bogus value (51 lbs)
     # replace with NaN
     df.loc[df.birthwgt_lb1 > 20, 'birthwgt_lb1'] = np.nan
-    
+
     # replace 'not ascertained', 'refused', 'don't know' with NaN
     na_vals = [97, 98, 99]
     df.birthwgt_lb1.replace(na_vals, np.nan, inplace=True)
@@ -65,7 +65,7 @@ def CleanFemPreg(df):
     # convert to a single column in lb
     # NOTE: creating a new column requires dictionary syntax,
     # not attribute assignment (like df.totalwgt_lb)
-    df['totalwgt_lb'] = df.birthwgt_lb1 + df.birthwgt_oz1 / 16.0    
+    df['totalwgt_lb'] = df.birthwgt_lb1 + df.birthwgt_oz1 / 16.0
 
     # due to a bug in ReadStataDct, the last variable gets clipped;
     # so for now set it to NaN
@@ -78,5 +78,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
